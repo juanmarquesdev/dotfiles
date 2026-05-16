@@ -147,3 +147,6 @@ if grep -qi microsoft /proc/version; then
 fi
 
 setopt NO_NOTIFY
+
+# asdf
+export PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH"

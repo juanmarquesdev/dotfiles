@@ -1,6 +1,7 @@
 [user]
 	name = juanmarquesdev
 	email = juanbatistamarques+github@gmail.com
+	signingKey = /home/jrbmx/.ssh/pessoal.pub
 [init]
 	defaultBranch = main
 [core]
@@ -9,3 +10,11 @@
 	pager = 
 [pull]
 	rebase = true
+[gpg]
+	format = ssh
+[commit]
+	gpgSign = true
+[tag]
+	gpgSign = true
+[gpg "ssh"]
+	allowedSignersFile = /home/jrbmx/.ssh/allowed_signers

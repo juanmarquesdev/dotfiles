@@ -1,0 +1,11 @@
+[user]
+	name = juanmarquesdev
+	email = juanbatistamarques+github@gmail.com
+[init]
+	defaultBranch = main
+[core]
+	editor = code --wait
+	autocrlf = false
+	pager = 
+[pull]
+	rebase = true

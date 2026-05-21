@@ -128,21 +128,12 @@ alias paru="paru --noconfirm"
 if grep -qi microsoft /proc/version; then
   export SSH_AUTH_SOCK="$HOME/.ssh/agent.sock"
 
-  WIN_NPIPERELAY=$(cmd.exe /c "where npiperelay.exe" 2>/dev/null | \
-    tr -d '\r' | \
-    grep -i "npiperelay.exe$" | \
-    head -n 1)
-
-  if [ -n "$WIN_NPIPERELAY" ]; then
-    NPIPERELAY=$(wslpath -u "$WIN_NPIPERELAY")
-
-    if [ -x "$NPIPERELAY" ] && ! ss -a | grep -q "$SSH_AUTH_SOCK"; then
-      rm -f "$SSH_AUTH_SOCK"
-      setsid socat \
-        UNIX-LISTEN:"$SSH_AUTH_SOCK",fork \
-        EXEC:"\"$NPIPERELAY\" -ei -s //./pipe/openssh-ssh-agent" \
-        >/dev/null 2>&1 &
-    fi
+  if (( $+commands[npiperelay.exe] )) && ! ss -a | grep -q "$SSH_AUTH_SOCK"; then
+    rm -f "$SSH_AUTH_SOCK"
+    setsid socat \
+      UNIX-LISTEN:"$SSH_AUTH_SOCK",fork \
+      EXEC:"npiperelay.exe -ei -s //./pipe/openssh-ssh-agent" \
+      >/dev/null 2>&1 &
   fi
 fi
 

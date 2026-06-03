@@ -18,3 +18,5 @@
 	gpgSign = true
 [gpg "ssh"]
 	allowedSignersFile = /home/jrbmx/.ssh/allowed_signers
+[push]
+	autoSetupRemote = true
